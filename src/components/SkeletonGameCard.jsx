@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/SkeletonGameCard.css"; // Import CSS for styling
+import "../styles/SkeletonGameCard.css";
 
 const SkeletonGameCard = () => {
   return (

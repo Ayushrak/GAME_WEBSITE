@@ -28,6 +28,6 @@ const gameSlice = createSlice({
   },
 });
 
-// Export the actions and reducer
+
 export const { toggleFavorite, setSavedGames, removeGame } = gameSlice.actions;
 export default gameSlice.reducer;

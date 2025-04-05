@@ -13,13 +13,13 @@ const MobileNavbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Sync with URL query param
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     setSearchTerm(params.get("q") || "");
   }, [location.search]);
 
-  // Debounced navigation
+
   useEffect(() => {
     if (debounceTimer) clearTimeout(debounceTimer);
 

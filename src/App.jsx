@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useAuth, useUser } from "@clerk/clerk-react";
-import { useSelector } from "react-redux"; // Import Redux state
+import { useSelector } from "react-redux"; 
 import { Toast, ToastContainer } from 'react-bootstrap';
 import HomePage from "./pages/HomePage";
 import GameDetails from "./pages/GameDetails";
 import Library from "./pages/Library";
 import NotFound from "./pages/NotFound";
-
 import Layout from "./Layout";
 import "./styles/global.css";
 import Default from "./components/Default";
@@ -15,11 +14,11 @@ import Default from "./components/Default";
 const App = () => {
   const { userId, isLoaded } = useAuth();
   const { user } = useUser();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); // Get auth state from Redux
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated); 
 
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
-  const [toastType, setToastType] = useState("success"); // Default to success toast
+  const [toastType, setToastType] = useState("success"); 
 
   useEffect(() => {
     if (isLoaded) {

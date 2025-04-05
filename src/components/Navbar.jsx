@@ -23,13 +23,13 @@ const MyNavbar = () => {
   const isMobile = useIsMobile();
   const { isMobile: isSmall, isMedium } = useScreenSize();
 
-  // Update searchTerm if query param changes externally
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     setSearchTerm(params.get("q") || "");
   }, [location.search]);
 
-  // Debounced search: Updates URL without form submission
+  
   useEffect(() => {
     if (debounceTimer) clearTimeout(debounceTimer);
 
@@ -42,7 +42,7 @@ const MyNavbar = () => {
         currentParams.delete("q");
         navigate(`${location.pathname}?${currentParams.toString()}`, { replace: true });
       }
-    }, 500); // adjust delay as needed
+    }, 500); 
 
     return () => clearTimeout(debounceTimer);
   }, [searchTerm]);

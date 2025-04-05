@@ -29,3 +29,13 @@
     background-color: #007bff;
   }
   
+  
+  @media (max-width: 576px) {
+    .pagination {
+        flex-wrap: wrap;
+    }
+    .pagination .page-item {
+        font-size: 14px;
+        padding: 5px;
+    }
+  }

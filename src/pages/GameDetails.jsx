@@ -37,7 +37,6 @@ function GameDetailPage() {
 
   return (
     <Container className="game-detail-container mt-4">
-      {/* Game Info on the Left, Trailer on the Right */}
       <Row className="align-items-start">
         <Col md={7} className="game-info">
           <h2 className="text-danger mt-5">{game.name}</h2>
@@ -59,13 +58,13 @@ function GameDetailPage() {
           <GameAttributes game={game} />
         </Col>
 
-        {/* Game Trailer on the Right */}
+       
         <Col md={5} className="game-trailer">
           <GameTrailer gameId={game.id} />
         </Col>
       </Row>
 
-      {/* Screenshots Below */}
+     
       <Row className="mt-4">
         <Col>
           <GameScreenshots gameId={game.id} />

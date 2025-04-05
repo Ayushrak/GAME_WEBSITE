@@ -11,14 +11,13 @@ const Library = () => {
   const { userId, isLoaded } = useAuth(); 
   const navigate = useNavigate();
 
-  // 🔒 Prevent redirect issue after login
+n
   useEffect(() => {
     if (isLoaded && !userId) {
       navigate("/sign-in");
     }
   }, [userId, isLoaded, navigate]);
 
-  // Load saved games from localStorage only when authenticated
   useEffect(() => {
     if (userId) {
       const savedGamesFromLocalStorage = JSON.parse(localStorage.getItem("savedGames")) || [];
@@ -26,7 +25,6 @@ const Library = () => {
     }
   }, [userId, dispatch]);
 
-  // Sync saved games with localStorage when they change
   useEffect(() => {
     if (userId) {
       localStorage.setItem("savedGames", JSON.stringify(savedGames));

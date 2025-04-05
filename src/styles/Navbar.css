@@ -144,21 +144,6 @@
 }
 
 
-.pagination {
-  display: flex;
-  justify-content: center;
-}
-
-@media (max-width: 576px) {
-  .pagination {
-      flex-wrap: wrap;
-  }
-  .pagination .page-item {
-      font-size: 14px;
-      padding: 5px;
-  }
-}
-
 
 .btn-outline-light:hover {
   background: #ff4d4d; 

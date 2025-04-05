@@ -11,9 +11,7 @@ import "./styles/global.css";
 
 const clerkKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
-if (!clerkKey) {
-  console.error("❌ Clerk API key is missing! Check your .env file.");
-}
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ClerkProvider publishableKey={clerkKey}>

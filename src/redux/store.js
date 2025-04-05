@@ -1,19 +1,19 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import authReducer from "./slices/authSlice"; // ✅ Ensure correct path
-import gameReducer from "./slices/gameSlice"; // ✅ Ensure correct path
+import authReducer from "./slices/authSlice"; 
+import gameReducer from "./slices/gameSlice"; 
 
 const persistConfig = {
     key: "root",
     version: 1,
     storage,
-    whitelist: ["auth"], // ✅ Only persist the auth state
+    whitelist: ["auth"],
 };
 
 const rootReducer = combineReducers({
-    auth: authReducer, // ✅ Persisted
-    games: gameReducer, // ❌ Not persisted (modify whitelist if needed)
+    auth: authReducer, 
+    games: gameReducer, 
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

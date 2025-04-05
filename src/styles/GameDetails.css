@@ -1,13 +1,4 @@
-/* General Styles */
-/* body {
-  font-family: 'Arial', sans-serif;
-  background: #121212;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-} */
 
-/* Game Details Container */
 .game-details-container {
   max-width: 900px;
   margin: 80px auto;
@@ -24,7 +15,7 @@
   box-shadow: 0px 12px 28px rgba(0, 204, 255, 0.7);
 }
 
-/* Game Title */
+
 .game-title {
   font-size: 2.5rem;
   font-weight: bold;
@@ -32,10 +23,10 @@
   color: #ff7f50; /* Coral color */
   text-shadow: 4px 4px 14px rgba(255, 87, 34, 0.8);
   margin-bottom: 25px;
-  margin-top: 100px; /* Added margin to avoid overlap with navbar */
+  margin-top: 100px; 
 }
 
-/* Game Banner */
+
 .game-banner {
   display: flex;
   justify-content: center;
@@ -54,13 +45,13 @@
   box-shadow: 0px 10px 25px rgba(255, 165, 0, 0.7);
 }
 
-/* Game Info */
+
 .game-info {
   margin-top: 25px;
   text-align: center;
 }
 
-/* Game Rating */
+
 .game-rating {
   display: flex;
   justify-content: center;
@@ -70,7 +61,7 @@
 }
 
 .star {
-  color: #ffcc00; /* Yellow gold for stars */
+  color: #ffcc00; 
   font-size: 1.8rem;
   animation: glow 1.5s infinite alternate;
 }
@@ -90,7 +81,7 @@
   color: #ffcc00;
 }
 
-/* Release Date */
+
 .game-release {
   font-size: 1.3rem;
   font-weight: bold;
