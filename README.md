@@ -121,7 +121,7 @@ Your application **must** be fully responsive and function seamlessly across dev
 ```bash
 git clone https://github.com/your-username/frontend-recruitment-task.git
 cd frontend-recruitment-task
-
+```
 ###  2. Install dependencies
 
 npm install
