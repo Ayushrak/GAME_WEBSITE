@@ -120,8 +120,8 @@ Your application **must** be fully responsive and function seamlessly across dev
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/frontend-recruitment-task.git
-cd frontend-recruitment-task
+git clone https://github.com/Ayushrak/GAME_WEBSITE.git
+
 ```
 ###  2. Install dependencies
 
@@ -139,27 +139,8 @@ VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 
 4. Run the app locally
 
-npm start
-📁 Suggested Folder Structure
-```
+npm run dev
 
-src/
-├── assets/
-├── components/
-│   ├── Header.jsx
-│   ├── GameCard.jsx
-│   └── Sidebar.jsx
-├── pages/
-│   ├── Home.jsx
-│   └── GameDetail.jsx
-├── redux/
-│   ├── store.js
-│   └── favoritesSlice.js
-├── 
-│   └── api.js
-├── App.jsx
-└── index.js
-```
 
 🔗 Useful Resources
 RAWG API Docs
@@ -185,7 +166,6 @@ Showcase your skills with React, Redux, Clerk Auth, and component design by deli
 Good luck, and have fun building! 🚀🎮
 
 
-Let me know if you want to add badges (like build status, license, etc.), demo screenshots, or a live deployment link section.
 
 
 # 🎮 GameVerse - Game Discovery Platform
