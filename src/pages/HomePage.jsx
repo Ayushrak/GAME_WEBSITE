@@ -133,7 +133,7 @@ const HomePage = () => {
       </aside>
 
       <div className="games-content">
-        <h2 className="text-center mb-4">🎮 Game Listings</h2>
+        <h2 className="text-center mb-4 text-white">🎮 Game Listings</h2>
         {searchTerm && (
           <p className="text-center text-muted">
             Showing results for <strong>"{searchTerm}"</strong>
