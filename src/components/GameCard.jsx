@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavorite } from "../redux/slices/gameSlice";
@@ -13,14 +13,28 @@ const GameCard = ({ game }) => {
   const savedGames = useSelector((state) => state.games.savedGames);
   const isFavorite = savedGames.some((g) => g.id === game.id);
 
+  useEffect(() => {
+    if (userId) {
+      console.log("Saving to localStorage:", savedGames);
+      localStorage.setItem("savedGames", JSON.stringify(savedGames));
+    } else {
+      console.log("Not saving — no userId!");
+    }
+  }, [userId, savedGames]);
+
   // Function to handle bookmarking
   const handleBookmark = () => {
     if (!userId) {
       alert("Please log in to bookmark this game.");
-      openSignIn(); // Open Clerk's Sign-In Modal
+      openSignIn();
       return;
     }
-    dispatch(toggleFavorite(game)); // Bookmark only if authenticated
+    dispatch(toggleFavorite(game));
+  
+    // Debug
+    console.log("Bookmarked game:", game);
+    console.log("Redux savedGames after bookmark:", savedGames);
+    console.log("localStorage after bookmark:", localStorage.getItem("savedGames"));
   };
 
   return (

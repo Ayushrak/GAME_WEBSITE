@@ -24,7 +24,7 @@
 .filter-sidebar {
   width: 280px; 
   min-width: 200px;
-  height: 80vh; 
+  height: 65vh; 
   padding: 20px;
   border-radius: 8px;
   background: linear-gradient(to bottom, #6b4f4f, #2b2929);

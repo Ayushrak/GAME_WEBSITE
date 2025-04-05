@@ -10,13 +10,13 @@ const gameSlice = createSlice({
   reducers: {
     toggleFavorite: (state, action) => {
       const game = action.payload;
-      if (!game?.id) return; // ✅ Safety check: Ensure game has an ID
+      if (!game?.id) return; 
 
       const index = state.savedGames.findIndex((g) => g.id === game.id);
       if (index >= 0) {
-        state.savedGames.splice(index, 1); // Remove from favorites
+        state.savedGames.splice(index, 1); 
       } else {
-        state.savedGames.push(game); // Add to favorites
+        state.savedGames.push(game); 
       }
     },
     setSavedGames: (state, action) => {
