@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage";
 import GameDetails from "./pages/GameDetails";
 import Library from "./pages/Library";
 import NotFound from "./pages/NotFound";
-import SearchResults from "./pages/SearchResults";
+
 import Layout from "./Layout";
 import "./styles/global.css";
 import Default from "./components/Default";
@@ -42,7 +42,6 @@ const App = () => {
           <Route index element={<HomePage />} />
           <Route path="game/:id" element={<GameDetails />} />
           <Route path="library" element={userId ? <Library /> : <Default />} />
-          <Route path="search" element={<SearchResults />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

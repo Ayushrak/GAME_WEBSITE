@@ -1,32 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container, Button, Form, InputGroup } from "react-bootstrap";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaSearch, FaBars } from "react-icons/fa";
 import { X } from "lucide-react";
+
+let debounceTimer;
 
 const MobileNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleSearchChange = (e) => setSearchTerm(e.target.value);
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (searchTerm.trim()) {
-      navigate(`/search?q=${searchTerm}`);
-    }
-  };
+  // Sync with URL query param
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    setSearchTerm(params.get("q") || "");
+  }, [location.search]);
+
+  // Debounced navigation
+  useEffect(() => {
+    if (debounceTimer) clearTimeout(debounceTimer);
+
+    debounceTimer = setTimeout(() => {
+      const currentParams = new URLSearchParams(location.search);
+      if (searchTerm.trim()) {
+        currentParams.set("q", searchTerm);
+        navigate(`${location.pathname}?${currentParams.toString()}`, { replace: true });
+      } else {
+        currentParams.delete("q");
+        navigate(`${location.pathname}?${currentParams.toString()}`, { replace: true });
+      }
+    }, 500);
+
+    return () => clearTimeout(debounceTimer);
+  }, [searchTerm]);
 
   return (
     <header className="bg-dark shadow-sm fixed-top">
       <Container className="d-flex justify-content-between align-items-center py-2">
-        {/* Logo */}
         <Link to="/" className="fw-bold text-light text-decoration-none">🎮 GameZone</Link>
 
-        {/* Icons Container */}
         <div className="d-flex gap-5">
-          {/* Toggle Button */}
           <button
             type="button"
             className="btn btn-outline-light"
@@ -35,7 +51,6 @@ const MobileNavbar = () => {
             {isOpen ? <X className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
           </button>
 
-          {/* User or Login Button */}
           <SignedOut>
             <SignInButton mode="modal">
               <Button variant="success" onClick={() => setIsOpen(false)}>
@@ -49,19 +64,17 @@ const MobileNavbar = () => {
         </div>
       </Container>
 
-      {/* Dropdown Menu */}
       {isOpen && (
         <nav className="bg-dark text-light p-3 position-absolute w-100 top-100 start-0 shadow">
-          <Form className="d-flex mb-3" onSubmit={handleSearchSubmit}>
+          <Form className="d-flex mb-3" onSubmit={(e) => e.preventDefault()}>
             <InputGroup>
-              <InputGroup.Text><FaSearch /></InputGroup.Text>
               <Form.Control
                 type="text"
                 placeholder="Search games..."
                 value={searchTerm}
-                onChange={handleSearchChange}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <Button variant="warning" type="submit">
+              <Button variant="warning" type="button">
                 <FaSearch />
               </Button>
             </InputGroup>

@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import GameCard from "../components/GameCard";
 import { Pagination } from "react-bootstrap";
 import useIsMobile from "../hooks/useIsMobile";
-import "../styles/HomePage.css"; // Updated CSS
+import "../styles/HomePage.css";
 import useScreenSize from "../hooks/useScreenSize";
-import axios from "axios"; // Import Axios
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const gamesPerPage = 6; // Increased to fit 3 per row
+  const gamesPerPage = 6;
   const isMobile = useIsMobile();
   const screenSize = useScreenSize();
 
@@ -19,6 +20,9 @@ const HomePage = () => {
   const [selectedTag, setSelectedTag] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [sortBy, setSortBy] = useState("popularity");
+
+  const location = useLocation();
+  const searchTerm = new URLSearchParams(location.search).get("q") || "";
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -28,7 +32,6 @@ const HomePage = () => {
         );
         setGames(response.data.results);
         setFilteredGames(response.data.results);
-        // console.log(response.data.results);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching games:", error);
@@ -52,7 +55,15 @@ const HomePage = () => {
       );
     }
     if (selectedYear) {
-      filtered = filtered.filter((game) => game.released?.includes(selectedYear));
+      filtered = filtered.filter((game) =>
+        game.released?.includes(selectedYear)
+      );
+    }
+
+    if (searchTerm) {
+      filtered = filtered.filter((game) =>
+        game.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     }
 
     if (sortBy === "popularity") {
@@ -63,7 +74,7 @@ const HomePage = () => {
 
     setFilteredGames(filtered);
     setCurrentPage(1);
-  }, [selectedCategory, selectedTag, selectedYear, sortBy, games]);
+  }, [selectedCategory, selectedTag, selectedYear, sortBy, games, searchTerm]);
 
   const indexOfLastGame = currentPage * gamesPerPage;
   const indexOfFirstGame = indexOfLastGame - gamesPerPage;
@@ -123,6 +134,11 @@ const HomePage = () => {
 
       <div className="games-content">
         <h2 className="text-center mb-4">🎮 Game Listings</h2>
+        {searchTerm && (
+          <p className="text-center text-muted">
+            Showing results for <strong>"{searchTerm}"</strong>
+          </p>
+        )}
         <div className="games-grid">
           {loading ? (
             [...Array(gamesPerPage)].map((_, index) => (
@@ -137,19 +153,31 @@ const HomePage = () => {
           ) : filteredGames.length > 0 ? (
             currentGames.map((game) => <GameCard key={game.id} game={game} />)
           ) : (
-            <p className="text-center w-100">🚫 No games found. Try a different filter.</p>
+            <p className="text-center w-100">
+              🚫 No games found. Try a different filter or search.
+            </p>
           )}
         </div>
 
         {filteredGames.length > 0 && (
           <Pagination className="pagination justify-content-center mt-5">
-            <Pagination.Prev onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1} />
+            <Pagination.Prev
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            />
             {Array.from({ length: totalPages }, (_, i) => (
-              <Pagination.Item key={i + 1} active={currentPage === i + 1} onClick={() => goToPage(i + 1)}>
+              <Pagination.Item
+                key={i + 1}
+                active={currentPage === i + 1}
+                onClick={() => goToPage(i + 1)}
+              >
                 {i + 1}
               </Pagination.Item>
             ))}
-            <Pagination.Next onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages} />
+            <Pagination.Next
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            />
           </Pagination>
         )}
       </div>
