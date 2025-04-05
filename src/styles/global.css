@@ -1,7 +1,7 @@
 
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Orbitron', sans-serif !important;
   background: linear-gradient(to bottom, #141e30, #243b55);
   color: white;
   overflow-x: hidden; 

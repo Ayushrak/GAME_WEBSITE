@@ -24,7 +24,7 @@ const MyNavbar = () => {
   return isSmall || isMedium ? (
     <MobileNavbar />
   ) : (
-    <BootstrapNavbar expand="lg" bg="dark" variant="dark" className="py-3 shadow" fixed="top">
+    <BootstrapNavbar expand="lg" bg="dark" variant="dark" className="py-1 shadow" fixed="top">
       <Container>
         {/* Brand Logo */}
         <Link to="/" className="navbar-brand fw-bold">🎮 GameZone</Link>
