@@ -6,6 +6,7 @@ import "../styles/HomePage.css";
 import useScreenSize from "../hooks/useScreenSize";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
@@ -15,6 +16,7 @@ const HomePage = () => {
   const gamesPerPage = 6;
   const isMobile = useIsMobile();
   const screenSize = useScreenSize();
+  const savedGames = useSelector((state) => state.games.savedGames); // ✅ used below
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
@@ -133,7 +135,7 @@ const HomePage = () => {
       </aside>
 
       <div className="games-content">
-        <h2 className="text-center mb-4 text-white">🎮 Game Listings</h2>
+        <h2 className="text-center mb-4 text-primary">🎮 Game Listings</h2>
         {searchTerm && (
           <p className="text-center text-muted">
             Showing results for <strong>"{searchTerm}"</strong>
@@ -151,7 +153,9 @@ const HomePage = () => {
               </div>
             ))
           ) : filteredGames.length > 0 ? (
-            currentGames.map((game) => <GameCard key={game.id} game={game} />)
+            currentGames.map((game) => (
+              <GameCard key={game.id} game={game} savedGames={savedGames} /> // ✅ pass savedGames
+            ))
           ) : (
             <p className="text-center w-100">
               🚫 No games found. Try a different filter or search.
