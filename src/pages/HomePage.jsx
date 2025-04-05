@@ -28,7 +28,7 @@ const HomePage = () => {
         );
         setGames(response.data.results);
         setFilteredGames(response.data.results);
-        console.log(response.data.results);
+        // console.log(response.data.results);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching games:", error);
