@@ -46,6 +46,7 @@ Create the main layout with:
 ### 2. 🧮 Filtering
 
 - Filters must dynamically update the game list.
+- Add loading spinners or skeletons while fetching data
 - Enable filtering by:
   - Category
   - Tags
@@ -128,10 +129,10 @@ npm install
 3. Environment variables
 Create a .env file in the root with the following:
 
-
-REACT_APP_RAWG_API_KEY=your_rawg_api_key
-REACT_APP_CLERK_FRONTEND_API=your_clerk_frontend_api
-REACT_APP_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+```
+VITE_RAWG_API_KEY=your_rawg_api_key
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+```
 🔑 You can obtain the RAWG API key at rawg.io/apidocs
 
 🔐 Clerk setup guide: Clerk Docs
@@ -140,6 +141,7 @@ REACT_APP_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 
 npm start
 📁 Suggested Folder Structure
+```
 
 src/
 ├── assets/
@@ -157,6 +159,7 @@ src/
 │   └── api.js
 ├── App.jsx
 └── index.js
+```
 
 🔗 Useful Resources
 RAWG API Docs
@@ -182,23 +185,8 @@ Showcase your skills with React, Redux, Clerk Auth, and component design by deli
 Good luck, and have fun building! 🚀🎮
 
 
----
-
 Let me know if you want to add badges (like build status, license, etc.), demo screenshots, or a live deployment link section.
 
-
-
-
-
-
-You said:
-PLEASE GIVE LIKE FILE NOT GIVE WHAT I DO GIVE HOW I START SMALL ELABORATE
-
-
-ChatGPT said:
-Got it! You want the README.md to be beginner-friendly and guide someone step by step like a real project file — not just a task description. Here's a clean, structured, and developer-friendly README.md file that you can directly use in your project folder:
-
-✅ README.md
 
 # 🎮 GameVerse - Game Discovery Platform
 
@@ -208,49 +196,3 @@ Built with **React**, **Redux**, **React-Bootstrap**, **Clerk Auth**, and **Vani
 
 ---
 
-## 🚀 Features
-
-- 🔍 Search for games by name (real-time search)
-- 🎮 View game cards with images, tags, ratings & more
-- 🎛️ Filter games by category, tags, release year, popularity
-- 📄 View detailed page of each game
-- ❤️ Bookmark your favorite games (requires login)
-- 🔐 User Authentication using Clerk
-- 🔄 Pagination to explore more games
-- 📱 Fully responsive design (mobile-friendly)
-
----
-
-## 🛠️ Tech Stack
-
-| Technology       | Purpose                        |
-|------------------|--------------------------------|
-| React            | UI building                    |
-| Redux Toolkit    | State Management               |
-| Clerk            | Authentication (Sign up/Login) |
-| React-Bootstrap  | UI components                  |
-| Bootstrap & CSS  | Styling                        |
-| RAWG API         | Game data                      |
-
----
-
-## 📦 Getting Started
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/your-username/gameverse.git
-cd gameverse
-
-###2. Install Dependencies
-npm install
-
-## 3. Set up Environment Variables
-Create a .env file in the root folder and add:
-
-
-REACT_APP_RAWG_API_KEY=your_rawg_api_key
-REACT_APP_CLERK_PUBLISHABLE_KEY=your_clerk_key
-REACT_APP_CLERK_FRONTEND_API=your_clerk_frontend_api
-📝 You can get a RAWG API key here: RAWG.io API
-🛡️ You can create a Clerk account and get API keys here: Clerk.dev
